@@ -1,5 +1,7 @@
 # Boilerplate Electron
 
+[![CI](https://github.com/ironlantern-io/boilerplate-electron/actions/workflows/ci.yml/badge.svg)](https://github.com/ironlantern-io/boilerplate-electron/actions/workflows/ci.yml)
+
 A reusable Electron starter template with [electron-vite](https://electron-vite.org/) and [electron-builder](https://www.electron.build/).
 
 ## Stack
@@ -8,6 +10,8 @@ A reusable Electron starter template with [electron-vite](https://electron-vite.
 - **electron-vite** — Fast dev server with HMR
 - **electron-builder** — Cross-platform binary packaging
 - **TypeScript** — Full type safety across all processes
+- **Vitest** — Unit testing (Node + jsdom environments)
+- **Playwright** — End-to-end testing with Electron support
 
 ## Project Structure
 
@@ -17,6 +21,9 @@ src/
 ├── preload/        Preload scripts (secure IPC bridge via contextBridge)
 └── renderer/       Renderer process (web UI)
     └── src/
+tests/
+├── unit/           Vitest unit tests (.main.test.ts / .renderer.test.ts)
+└── e2e/            Playwright end-to-end tests
 ```
 
 ## Getting Started
@@ -36,8 +43,19 @@ npm run dev
 | `npm run package:mac` | Package for macOS (dmg + zip) |
 | `npm run package:win` | Package for Windows (nsis) |
 | `npm run package:linux` | Package for Linux (AppImage + deb) |
+| `npm run test` | Run unit tests |
+| `npm run test:watch` | Run unit tests in watch mode |
+| `npm run test:e2e` | Build + run end-to-end tests |
 
 Packaged binaries are output to the `dist/` directory.
+
+## Testing
+
+Unit tests use [Vitest](https://vitest.dev/) with two project environments:
+- `*.main.test.ts` — Node environment for main/preload process logic
+- `*.renderer.test.ts` — jsdom environment for renderer/DOM logic
+
+E2E tests use [Playwright](https://playwright.dev/docs/api/class-electron) to launch the full Electron app and test real user interactions, window management, and security settings.
 
 ## Adding IPC Communication
 
