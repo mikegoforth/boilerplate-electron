@@ -4,11 +4,15 @@ import { resolve } from 'path'
 const appPath = resolve(__dirname, '../../out/main/index.js')
 const electronPath = require('electron') as unknown as string
 
+// CI Linux runners execute as root, which requires --no-sandbox for Chromium
+const isCI = !!process.env.CI
+const args = isCI ? [appPath, '--no-sandbox'] : [appPath]
+
 test.describe('electron app', () => {
   test('should launch and show main window', async () => {
     const electronApp = await electron.launch({
       executablePath: electronPath,
-      args: [appPath]
+      args
     })
 
     const window = await electronApp.firstWindow()
@@ -26,7 +30,7 @@ test.describe('electron app', () => {
   test('should have correct security settings', async () => {
     const electronApp = await electron.launch({
       executablePath: electronPath,
-      args: [appPath]
+      args
     })
 
     const window = await electronApp.firstWindow()
