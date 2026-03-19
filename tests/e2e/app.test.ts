@@ -21,8 +21,7 @@ test.describe('electron app', () => {
     const title = await window.title()
     expect(title).toBe('Electron App')
 
-    const isVisible = await window.isVisible('body')
-    expect(isVisible).toBe(true)
+    await expect(window.locator('body')).toBeVisible()
 
     await electronApp.close()
   })
