@@ -2,12 +2,12 @@ import { test, expect, _electron as electron } from '@playwright/test'
 import { resolve } from 'path'
 
 const appPath = resolve(__dirname, '../../out/main/index.js')
-const electronBinary = resolve(__dirname, '../../node_modules/.bin/electron')
+const electronPath = require('electron') as unknown as string
 
 test.describe('electron app', () => {
   test('should launch and show main window', async () => {
     const electronApp = await electron.launch({
-      executablePath: electronBinary,
+      executablePath: electronPath,
       args: [appPath]
     })
 
@@ -25,7 +25,7 @@ test.describe('electron app', () => {
 
   test('should have correct security settings', async () => {
     const electronApp = await electron.launch({
-      executablePath: electronBinary,
+      executablePath: electronPath,
       args: [appPath]
     })
 
