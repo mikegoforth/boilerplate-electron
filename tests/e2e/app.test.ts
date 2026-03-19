@@ -2,10 +2,14 @@ import { test, expect, _electron as electron } from '@playwright/test'
 import { resolve } from 'path'
 
 const appPath = resolve(__dirname, '../../out/main/index.js')
+const electronBinary = resolve(__dirname, '../../node_modules/.bin/electron')
 
 test.describe('electron app', () => {
   test('should launch and show main window', async () => {
-    const electronApp = await electron.launch({ args: [appPath] })
+    const electronApp = await electron.launch({
+      executablePath: electronBinary,
+      args: [appPath]
+    })
 
     const window = await electronApp.firstWindow()
     await window.waitForLoadState('domcontentloaded')
@@ -20,7 +24,10 @@ test.describe('electron app', () => {
   })
 
   test('should have correct security settings', async () => {
-    const electronApp = await electron.launch({ args: [appPath] })
+    const electronApp = await electron.launch({
+      executablePath: electronBinary,
+      args: [appPath]
+    })
 
     const window = await electronApp.firstWindow()
     await window.waitForLoadState('domcontentloaded')
