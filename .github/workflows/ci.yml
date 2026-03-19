@@ -58,3 +58,9 @@ jobs:
         with:
           name: test-results-${{ matrix.os }}
           path: test-results/
+
+      - name: Upload coverage reports to Codecov
+        if: matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}

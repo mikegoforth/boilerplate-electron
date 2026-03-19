@@ -1,6 +1,7 @@
 # Boilerplate Electron
 
 [![CI](https://github.com/ironlantern-io/boilerplate-electron/actions/workflows/ci.yml/badge.svg)](https://github.com/ironlantern-io/boilerplate-electron/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/ironlantern-io/boilerplate-electron/branch/main/graph/badge.svg)](https://codecov.io/gh/ironlantern-io/boilerplate-electron)
 [![Security](https://img.shields.io/badge/security-view%20alerts-blue?logo=github)](https://github.com/ironlantern-io/boilerplate-electron/security)
 
 A reusable Electron starter template with [electron-vite](https://electron-vite.org/) and [electron-builder](https://www.electron.build/).
