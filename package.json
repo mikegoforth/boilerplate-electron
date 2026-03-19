@@ -2,6 +2,7 @@
   "name": "boilerplate-electron",
   "version": "1.0.0",
   "description": "Electron boilerplate with electron-vite and electron-builder",
+  "author": "Mike Goforth <mike@goforth.dev>",
   "main": "./out/main/index.js",
   "scripts": {
     "dev": "electron-vite dev",
