@@ -45,6 +45,7 @@ npm run dev
 | `npm run package:win` | Package for Windows (nsis) |
 | `npm run package:linux` | Package for Linux (AppImage + deb) |
 | `npm run test` | Run unit tests |
+| `npm run test:coverage` | Run unit tests with coverage report |
 | `npm run test:watch` | Run unit tests in watch mode |
 | `npm run test:e2e` | Build + run end-to-end tests |
 
@@ -57,6 +58,15 @@ Unit tests use [Vitest](https://vitest.dev/) with two project environments:
 - `*.renderer.test.ts` — jsdom environment for renderer/DOM logic
 
 E2E tests use [Playwright](https://playwright.dev/docs/api/class-electron) to launch the full Electron app and test real user interactions, window management, and security settings.
+
+## CI
+
+GitHub Actions runs on every push and PR to `main` across **Ubuntu, macOS, and Windows**:
+
+- Build verification
+- Unit tests (all platforms)
+- Coverage report (Ubuntu, uploaded as artifact)
+- E2E tests (all platforms)
 
 ## Adding IPC Communication
 
